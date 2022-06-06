@@ -9,10 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springboot.demo</groupId>
-	<artifactId>account</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>account</name>
+	<artifactId>Employee-Account</artifactId>
+	<version>1.0.0</version>
+	<name>Employee-Account</name>
 	<description>Employee Account Project</description>
+	<packaging>war</packaging>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -25,7 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -73,7 +73,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -82,5 +81,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
