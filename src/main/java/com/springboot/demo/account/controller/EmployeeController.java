@@ -66,14 +66,14 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employees/{id}")
-    public ResponseEntity<Map<String,Object>> deleteEmployee(@PathVariable int id) {
+    public ResponseEntity<Map<String,Object>> deleteEmployeeById(@PathVariable int id) {
 
         Employee employee = employeeService.getEmployeeById(id);
 
         if (employee == null)
             throw new EmployeeNotFoundException("Employee with id: " + id + " is not found.");
 
-        String message = employeeService.deleteById(id);
+        String message = employeeService.deleteEmployeeById(id);
 
         EmployeeResponse response = new EmployeeResponse(
                 message + " with id: " + id + ".");

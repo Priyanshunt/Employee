@@ -14,5 +14,5 @@ public interface EmployeeDAO {
 
     public void updateEmployee(Employee employee);
 
-    public void deleteById(int id);
+    public void deleteEmployeeById(int id);
 }

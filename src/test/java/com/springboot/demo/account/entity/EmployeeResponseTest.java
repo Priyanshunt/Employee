@@ -13,7 +13,7 @@ public class EmployeeResponseTest {
     @Test
     public void test() {
         EmployeeResponse response = new EmployeeResponse();
-        long timeStamp=System.currentTimeMillis();
+        long timeStamp = System.currentTimeMillis();
         response.setStatus(200);
         response.setMessage("message");
         response.setTimeStamp(timeStamp);
@@ -33,7 +33,7 @@ public class EmployeeResponseTest {
         employee.setName("name");
         employee.setDepartment("dep");
         employee.setMachine("machine");
-        EmployeeResponse response1 = new EmployeeResponse("message",employee);
+        EmployeeResponse response1 = new EmployeeResponse("message", employee);
         response1.setTimeStamp(timeStamp);
 
         assertNotNull(response1);

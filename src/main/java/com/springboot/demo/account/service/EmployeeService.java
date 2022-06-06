@@ -14,5 +14,5 @@ public interface EmployeeService {
 
     public String updateEmployee(Employee employee);
 
-    public String deleteById(int id);
+    public String deleteEmployeeById(int id);
 }

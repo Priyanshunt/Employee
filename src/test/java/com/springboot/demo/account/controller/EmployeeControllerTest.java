@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -33,11 +33,11 @@ public class EmployeeControllerTest {
 
     @Before
     public void before() {
-        employees=new ArrayList<>();
-        Employee employee=new Employee();
+        employees = new ArrayList<>();
+        Employee employee = new Employee();
         employee.setId(123);
         employees.add(employee);
-        employee=new Employee();
+        employee = new Employee();
         employee.setId(456);
         employees.add(employee);
     }
@@ -59,7 +59,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void addEmployeeTest() {
-        Employee employee1=new Employee();
+        Employee employee1 = new Employee();
         employee1.setId(789);
         ResponseEntity<EmployeeResponse> responseEntity = employeeController.addEmployee(employee1);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -67,7 +67,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void updateEmployeeTest() {
-        Employee employee1=new Employee();
+        Employee employee1 = new Employee();
         employee1.setId(456);
         employee1.setName("name");
         when(employeeService.getEmployeeById(anyInt())).thenReturn(employees.get(1));
@@ -76,9 +76,9 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void deleteEmployeeTest() {
+    public void deleteEmployeeByIdTest() {
         when(employeeService.getEmployeeById(anyInt())).thenReturn(employees.get(1));
-        ResponseEntity<Map<String, Object>> responseEntity = employeeController.deleteEmployee(456);
+        ResponseEntity<Map<String, Object>> responseEntity = employeeController.deleteEmployeeById(456);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 }

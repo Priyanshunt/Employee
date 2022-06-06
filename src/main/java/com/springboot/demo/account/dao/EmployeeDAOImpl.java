@@ -54,7 +54,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteEmployeeById(int id) {
 
         Session currentSession = entityManager.unwrap(Session.class);
 

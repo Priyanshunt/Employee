@@ -24,7 +24,7 @@ public class EmployeeTest {
         assertEquals("dep", employee.getDepartment());
         assertEquals("machine", employee.getMachine());
 
-        Employee employee1=new Employee("name","dep","machine");
+        Employee employee1 = new Employee("name", "dep", "machine");
         employee1.setId(123);
 
         assertNotNull(employee1);

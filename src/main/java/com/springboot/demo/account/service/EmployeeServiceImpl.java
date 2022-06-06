@@ -37,13 +37,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public String updateEmployee(Employee employee) {
         employeeDAO.updateEmployee(employee);
-        return "Employee Details has been saved";
+        return "Employee Details has been updated";
     }
 
     @Override
     @Transactional
-    public String deleteById(int id) {
-        employeeDAO.deleteById(id);
+    public String deleteEmployeeById(int id) {
+        employeeDAO.deleteEmployeeById(id);
         return "Employee Details has been deleted";
     }
 }
