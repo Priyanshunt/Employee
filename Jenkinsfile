@@ -16,12 +16,11 @@ pipeline {
 		stage("Preparing for Build") {
 			steps {
 				git branch: 'main', credentialsId: 'Git', url: 'https://github.com/Priyanshunt/Employee-Account.git'
-				bat 'mvn clean install -Dmaven.test.skip=true'
 			}
 		}
 		stage("Build") {
 			steps {
-				bat 'mvn compile'
+				bat 'mvn clean compile'
 			}
 		}
 		stage("Test") {
