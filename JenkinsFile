@@ -41,7 +41,7 @@ pipeline {
 		}
 		stage('Deploy') {
 		    steps {
-		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'Employee-Account', war: '**/*war'
+		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'AccountApplication', onFailure: false, war: '**/*.war'
 		    }
 		}
 	}
