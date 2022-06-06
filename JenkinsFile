@@ -6,7 +6,7 @@ pipeline {
 	    	maven "MAVEN_HOME"
 				}
 	stages {
-		stage("Initialise") {
+		stage("Initialize") {
 			steps {
 				bat "git --version"
 				bat "mvn --version"
@@ -16,21 +16,22 @@ pipeline {
 		stage("Preparing for Build") {
 			steps {
 				git branch: 'main', credentialsId: 'Git', url: 'https://github.com/Priyanshunt/Employee-Account.git'
+				bat 'mvn clean install -Dmaven.test.skip=true'
 			}
 		}
 		stage("Build") {
 			steps {
-				bat 'mvn clean compile'
+				bat 'mvn compile'
 			}
 		}
 		stage("Test") {
 			steps {
-				bat 'mvn clean test'
+				bat 'mvn test'
 			}
 		}
 		stage("Package") {
 			steps {
-				bat 'mvn clean package'
+				bat 'mvn package -Dmaven.test.skip=true'
 			}
 		}
 		stage('Results') {
@@ -41,7 +42,7 @@ pipeline {
 		}
 		stage('Deploy') {
 		    steps {
-		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'AccountApplication', onFailure: false, war: '**/*.war'
+		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'Employee-Account', onFailure: false, war: '**/*.war'
 		    }
 		}
 	}
