@@ -1,6 +1,6 @@
 package com.springboot.demo.account.dao;
 
-import com.springboot.demo.account.entity.Employee;
+import com.springboot.demo.account.model.Employee;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.junit.Before;

@@ -1,7 +1,7 @@
 package com.springboot.demo.account.service;
 
 import com.springboot.demo.account.dao.EmployeeDAO;
-import com.springboot.demo.account.entity.Employee;
+import com.springboot.demo.account.model.Employee;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -1,7 +1,7 @@
 package com.springboot.demo.account.controller;
 
-import com.springboot.demo.account.entity.Employee;
-import com.springboot.demo.account.entity.EmployeeResponse;
+import com.springboot.demo.account.model.Employee;
+import com.springboot.demo.account.model.EmployeeResponse;
 import com.springboot.demo.account.exception.EmployeeNotFoundException;
 import com.springboot.demo.account.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.springboot.demo.account.entity;
+package com.springboot.demo.account.model;
 
 public class EmployeeResponse {
 
