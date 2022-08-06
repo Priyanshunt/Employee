@@ -1,10 +1,10 @@
-package com.springboot.demo.account;
+package com.springboot.demo.employee;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AccountApplicationTests {
+class EmployeeApplicationTests {
 
 	@Test
 	void contextLoads() {

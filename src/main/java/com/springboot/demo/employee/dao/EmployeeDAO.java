@@ -1,6 +1,6 @@
-package com.springboot.demo.account.dao;
+package com.springboot.demo.employee.dao;
 
-import com.springboot.demo.account.model.Employee;
+import com.springboot.demo.employee.model.Employee;
 
 import java.util.List;
 

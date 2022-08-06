@@ -1,6 +1,6 @@
-package com.springboot.demo.account.service;
+package com.springboot.demo.employee.service;
 
-import com.springboot.demo.account.model.Employee;
+import com.springboot.demo.employee.model.Employee;
 
 import java.util.List;
 

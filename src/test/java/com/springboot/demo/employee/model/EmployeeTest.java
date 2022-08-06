@@ -1,4 +1,4 @@
-package com.springboot.demo.account.model;
+package com.springboot.demo.employee.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

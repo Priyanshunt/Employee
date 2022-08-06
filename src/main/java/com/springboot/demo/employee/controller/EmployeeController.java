@@ -1,9 +1,9 @@
-package com.springboot.demo.account.controller;
+package com.springboot.demo.employee.controller;
 
-import com.springboot.demo.account.model.Employee;
-import com.springboot.demo.account.model.EmployeeResponse;
-import com.springboot.demo.account.exception.EmployeeNotFoundException;
-import com.springboot.demo.account.service.EmployeeService;
+import com.springboot.demo.employee.model.Employee;
+import com.springboot.demo.employee.model.EmployeeResponse;
+import com.springboot.demo.employee.exception.EmployeeNotFoundException;
+import com.springboot.demo.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

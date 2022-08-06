@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/employeedb?useSSL=false&serverTimezone=UTC
+    username: root
+    password: admin
+
+api:
+  version: @revision@
+
+springdoc:
+  packagesToScan: com.springboot.demo.employee
+  pathsToMatch: /**

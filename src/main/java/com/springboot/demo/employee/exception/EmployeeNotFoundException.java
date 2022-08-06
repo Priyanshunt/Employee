@@ -1,4 +1,4 @@
-package com.springboot.demo.account.exception;
+package com.springboot.demo.employee.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 
