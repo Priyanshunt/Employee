@@ -1,7 +1,5 @@
 pipeline {
-	agent {
-	    label 'linux'
-	}
+	agent any
 	tools {
 	    	git "GIT"
 	    	jdk "JAVA_HOME"
