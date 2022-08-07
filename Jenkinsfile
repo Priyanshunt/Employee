@@ -1,16 +1,18 @@
 pipeline {
-	agent any
+	agent {
+	    label 'linux'
+	}
 	tools {
 	    	git "GIT"
 	    	jdk "JAVA_HOME"
 	    	maven "MAVEN_HOME"
-				}
+	}
 	stages {
 		stage("Initialize") {
 			steps {
-				bat "git --version"
-				bat "mvn --version"
-				bat "java --version"
+				echo "git --version"
+				echo "mvn --version"
+				echo "java --version"
 			}
 		}
 		stage("Preparing for Build") {
@@ -20,17 +22,17 @@ pipeline {
 		}
 		stage("Build") {
 			steps {
-				bat 'mvn clean compile'
+				sh 'mvn clean compile'
 			}
 		}
 		stage("Test") {
 			steps {
-				bat 'mvn test'
+				sh 'mvn test'
 			}
 		}
 		stage("Package") {
 			steps {
-				bat 'mvn package -Dmaven.test.skip=true'
+				sh 'mvn package -Dmaven.test.skip=true'
 			}
 		}
 		stage('Results') {
