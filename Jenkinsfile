@@ -2,17 +2,15 @@ pipeline {
 	agent any
 	tools {
         jdk "JAVA_HOME"
-        maven "MAVEN_HOME"
+        mvn "MAVEN_HOME"
         git "GIT"
 	}
 	stages {
 		stage("Initialize") {
 			steps {
-			    script {
-                    sh "java -version"
-                    sh "mvn --version"
-                    sh "git --version"
-                }
+                sh "java -version"
+                sh "mvn --version"
+                sh "git --version"
 			}
 		}
 		stage("Preparing for Build") {
@@ -22,28 +20,36 @@ pipeline {
 		}
 		stage("Build") {
 			steps {
-				sh 'mvn clean compile'
+				bat 'mvn clean compile'
 			}
 		}
 		stage("Test") {
 			steps {
-				sh 'mvn test'
+				bat 'mvn test'
 			}
 		}
 		stage("Package") {
 			steps {
-				sh 'mvn package -Dmaven.test.skip=true'
+				bat 'mvn package -Dmaven.test.skip=true'
 			}
 		}
 		stage('Results') {
-		    	steps {
-                		junit '**/target/surefire-reports/TEST-*.xml'
-                		archiveArtifacts 'target/*.war'
-			}
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts 'target/*.war'
+            }
+		}
+		stage('Pre Deploy') {
+		    steps {
+                keepRunning {
+                    bat "C:/Program^ Files/Apache^ Software^ Foundation/Tomcat^ 9.0/bin/startup.bat"
+                }
+                bat 'exit 0'
+            }
 		}
 		stage('Deploy') {
 		    steps {
-		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'Employee', onFailure: false, war: '**/*.war'
+		        deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://localhost:8082/')], contextPath: 'Employee', onFailure: false, war: '**/target/*.war'
 		    }
 		}
 	}
