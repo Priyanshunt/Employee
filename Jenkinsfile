@@ -2,15 +2,15 @@ pipeline {
 	agent any
 	tools {
         jdk "JAVA_HOME"
-        mvn "MAVEN_HOME"
+        maven "MAVEN_HOME"
         git "GIT"
 	}
 	stages {
 		stage("Initialize") {
 			steps {
-                sh "java -version"
-                sh "mvn --version"
-                sh "git --version"
+                bat "java -version"
+                bat "mvn --version"
+                bat "git --version"
 			}
 		}
 		stage("Preparing for Build") {
