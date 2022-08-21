@@ -1,18 +1,18 @@
 package com.springboot.demo.employee.service;
 
-import com.springboot.demo.employee.dao.EmployeeDAO;
-import com.springboot.demo.employee.model.Employee;
+import com.springboot.demo.employee.model.*;
+import com.springboot.demo.employee.repository.EmployeeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class EmployeeServiceImplTest {
 
     @Mock
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
     @InjectMocks
     private EmployeeServiceImpl employeeServiceImpl;
@@ -36,43 +36,61 @@ public class EmployeeServiceImplTest {
         employee = new Employee();
         employee.setId(456);
         employees.add(employee);
-        when(employeeDAO.getAllEmployees()).thenReturn(employees);
-        List<Employee> employeeList = employeeServiceImpl.getAllEmployees();
-        assertEquals(123, employeeList.get(0).getId());
-        assertEquals(456, employeeList.get(1).getId());
+        when(employeeRepository.findAll()).thenReturn(employees);
+        EmployeeListResponse response = employeeServiceImpl.getAllEmployees();
+        assertEquals(2, response.getEmployeeList().size());
+        assertEquals(123, response.getEmployeeList().get(0).getId());
+        assertEquals(456, response.getEmployeeList().get(1).getId());
+        assertEquals(200, response.getStatusCode());
+        assertEquals("Employee List has been retrieved.", response.getMessage());
     }
 
     @Test
     public void getEmployeeByIdTest() {
         Employee employee = new Employee();
         employee.setId(123);
-        when(employeeDAO.getEmployeeById(anyInt())).thenReturn(employee);
-        Employee employee1 = employeeServiceImpl.getEmployeeById(123);
-        assertTrue(new ReflectionEquals(employee).matches(employee1));
+        when(employeeRepository.findById(123)).thenReturn(Optional.of(employee));
+        EmployeeResponse response = employeeServiceImpl.getEmployeeById(123);
+        assertEquals(123, response.getEmployee().getId());
+        assertEquals(200, response.getStatusCode());
+        assertEquals("Employee with id: 123 has been found.", response.getMessage());
     }
 
     @Test
     public void saveEmployeeTest() {
         Employee employee = new Employee();
-        employee.setId(0);
-        doNothing().when(employeeDAO).saveEmployee(any(Employee.class));
-        String message = employeeServiceImpl.saveEmployee(employee);
-        assertEquals("Employee Details has been saved", message);
+        employee.setId(123);
+        EmployeeCreationRequest request = new EmployeeCreationRequest();
+        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
+        EmployeeResponse response = employeeServiceImpl.addEmployee(request);
+        assertEquals(123, response.getEmployee().getId());
+        assertEquals(200, response.getStatusCode());
+        assertEquals("Employee details has been saved with id: 123.", response.getMessage());
     }
 
     @Test
     public void updateEmployeeTest() {
         Employee employee = new Employee();
         employee.setId(123);
-        doNothing().when(employeeDAO).updateEmployee(any(Employee.class));
-        String message = employeeServiceImpl.updateEmployee(employee);
-        assertEquals("Employee Details has been updated", message);
+        when(employeeRepository.findById(123)).thenReturn(Optional.of(employee));
+        EmployeeUpdationRequest request = new EmployeeUpdationRequest();
+        request.setId(123);
+        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
+        EmployeeResponse response = employeeServiceImpl.updateEmployee(request);
+        assertEquals(123, response.getEmployee().getId());
+        assertEquals(200, response.getStatusCode());
+        assertEquals("Employee details has been updated with id: 123.", response.getMessage());
     }
 
     @Test
     public void deleteEmployeeByIdTest() {
-        doNothing().when(employeeDAO).deleteEmployeeById(anyInt());
-        String message = employeeServiceImpl.deleteEmployeeById(123);
-        assertEquals("Employee Details has been deleted", message);
+        Employee employee = new Employee();
+        employee.setId(123);
+        when(employeeRepository.findById(123)).thenReturn(Optional.of(employee));
+        doNothing().when(employeeRepository).deleteById(anyInt());
+        EmployeeDeleteResponse response = employeeServiceImpl.deleteEmployeeById(123);
+        assertEquals(123, response.getId());
+        assertEquals(200, response.getStatusCode());
+        assertEquals("Employee details has been updated with id: 123.", response.getMessage());
     }
 }

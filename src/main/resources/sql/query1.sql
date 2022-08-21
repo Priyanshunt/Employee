@@ -1,5 +1,10 @@
-insert into employee values (1,"James","AWM","Windows");
-insert into employee values (2,"Michael","CIB","Mac OS");
-insert into employee values (3,"Steve","CB","Linux");
-insert into employee values (4,"Emma","CCB","Windows");
-insert into employee values (5,"Sarah","CTC","Mac OS");
+insert into employee values (1,"James","Development","Windows");
+insert into employee values (2,"Michael","Production","MacOS");
+insert into employee values (3,"Steve","Testing","Linux");
+insert into employee values (4,"Emma","Customer Support","Windows");
+insert into employee values (5,"Sarah","Architecture","MacOS");
+insert into employee values (6,"Ethan","Operations","Linux");
+insert into employee values (7,"Ashley","Human Resources","Windows");
+insert into employee values (8,"Ryder","Management","MacOS");
+insert into employee values (9,"Olivia","Accounting & Finance","Windows");
+insert into employee values (10,"Madison","Design","MacOS");

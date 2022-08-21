@@ -19,7 +19,7 @@ public class EmployeeTest {
         employee.setMachine("machine");
 
         assertNotNull(employee);
-        assertEquals(123, employee.getId());
+        assertEquals(123, employee.getId().intValue());
         assertEquals("name", employee.getName());
         assertEquals("dep", employee.getDepartment());
         assertEquals("machine", employee.getMachine());

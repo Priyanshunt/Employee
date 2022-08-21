@@ -1,18 +1,16 @@
 package com.springboot.demo.employee.service;
 
-import com.springboot.demo.employee.model.Employee;
-
-import java.util.List;
+import com.springboot.demo.employee.model.*;
 
 public interface EmployeeService {
 
-    public List<Employee> getAllEmployees();
+    public EmployeeListResponse getAllEmployees();
 
-    public Employee getEmployeeById(int id);
+    public EmployeeResponse getEmployeeById(Integer id);
 
-    public String saveEmployee(Employee employee);
+    public EmployeeResponse addEmployee(EmployeeCreationRequest request);
 
-    public String updateEmployee(Employee employee);
+    public EmployeeResponse updateEmployee(EmployeeUpdationRequest request);
 
-    public String deleteEmployeeById(int id);
+    public EmployeeDeleteResponse deleteEmployeeById(Integer id);
 }

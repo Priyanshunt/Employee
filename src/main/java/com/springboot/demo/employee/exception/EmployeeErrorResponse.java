@@ -1,41 +1,27 @@
 package com.springboot.demo.employee.exception;
 
-public class EmployeeErrorResponse {
+import com.springboot.demo.employee.model.CommonResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-    private int status;
-    private String message;
-    private long timeStamp;
+@Schema(description = "Employee Error Response")
+public class EmployeeErrorResponse extends CommonResponse {
+
+    private String details;
 
     public EmployeeErrorResponse() {
     }
 
-    public EmployeeErrorResponse(int status, String message, long timeStamp) {
-        this.status = status;
-        this.message = message;
-        this.timeStamp = timeStamp;
+    public EmployeeErrorResponse(Integer statusCode, String details, String message) {
+        super(statusCode, message);
+        this.details = details;
+
     }
 
-    public int getStatus() {
-        return status;
+    public String getDetails() {
+        return details;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

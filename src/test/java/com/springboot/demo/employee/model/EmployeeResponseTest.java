@@ -12,28 +12,26 @@ public class EmployeeResponseTest {
 
     @Test
     public void test() {
-        EmployeeResponse response = new EmployeeResponse();
-        long timeStamp = System.currentTimeMillis();
-        response.setStatus(200);
-        response.setMessage("message");
-        response.setTimeStamp(timeStamp);
-        response.setName("name");
-        response.setDepartment("dep");
-        response.setMachine("machine");
-
-        assertNotNull(response);
-        assertEquals(200, response.getStatus());
-        assertEquals("message", response.getMessage());
-        assertEquals(timeStamp, response.getTimeStamp());
-        assertEquals("name", response.getName());
-        assertEquals("dep", response.getDepartment());
-        assertEquals("machine", response.getMachine());
-
         Employee employee = new Employee();
+        employee.setId(1);
         employee.setName("name");
         employee.setDepartment("dep");
         employee.setMachine("machine");
-        EmployeeResponse response1 = new EmployeeResponse("message", employee);
+
+        EmployeeResponse response = new EmployeeResponse();
+        long timeStamp = System.currentTimeMillis();
+        response.setStatusCode(200);
+        response.setMessage("message");
+        response.setTimeStamp(timeStamp);
+        response.setEmployee(employee);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().intValue());
+        assertEquals("message", response.getMessage());
+        assertEquals(timeStamp, response.getTimeStamp().longValue());
+        assertTrue(new ReflectionEquals(response.getEmployee()).matches(employee));
+
+        EmployeeResponse response1 = new EmployeeResponse(200, "message", employee);
         response1.setTimeStamp(timeStamp);
 
         assertNotNull(response1);

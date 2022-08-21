@@ -1,91 +1,86 @@
 package com.springboot.demo.employee.controller;
 
-import com.springboot.demo.employee.model.Employee;
-import com.springboot.demo.employee.model.EmployeeResponse;
-import com.springboot.demo.employee.exception.EmployeeNotFoundException;
+import com.springboot.demo.employee.model.*;
 import com.springboot.demo.employee.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-@RestController
+@Controller
 @RequestMapping("/api")
+@Tag(name = "Employee Controller")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Get all employees",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeListResponse.class)))})
+    public EmployeeListResponse getAllEmployees() {
+        EmployeeListResponse response = employeeService.getAllEmployees();
+        return response;
     }
 
-    @GetMapping("/employees/{id}")
-    public ResponseEntity<EmployeeResponse> getEmployeeById(@PathVariable int id) {
-
-        Employee employee = employeeService.getEmployeeById(id);
-
-        if (employee == null)
-            throw new EmployeeNotFoundException("Employee with id: " + id + " is not found.");
-
-        EmployeeResponse response = new EmployeeResponse(
-                "Employee with id: " + employee.getId() + " has been found.", employee);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Get employee by id",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
+    public EmployeeResponse getEmployeeById(
+            @Parameter(in = ParameterIn.DEFAULT, description = "Employee Id", required = true, example = "123")
+            @NotNull(message = "Employee Id cannot be null") @PathVariable Integer id) {
+        EmployeeResponse response = employeeService.getEmployeeById(id);
+        return response;
     }
 
-    @PostMapping("/employees")
-    public ResponseEntity<EmployeeResponse> addEmployee(@RequestBody Employee employee) {
-
-        employee.setId(0);
-
-        String message = employeeService.saveEmployee(employee);
-
-        EmployeeResponse response = new EmployeeResponse(message + " with id: " + employee.getId() + ".", employee);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Add new employee",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
+    public EmployeeResponse addEmployee(
+            @Parameter(in = ParameterIn.DEFAULT, description = "Employee Creation Request", required = true)
+            @RequestBody @Valid EmployeeCreationRequest request) {
+        EmployeeResponse response = employeeService.addEmployee(request);
+        return response;
     }
 
-    @PutMapping("/employees")
-    public ResponseEntity<EmployeeResponse> updateEmployee(@RequestBody Employee employee) {
-
-        if (employeeService.getEmployeeById(employee.getId()) == null)
-            throw new EmployeeNotFoundException("Employee with id: " + employee.getId() + " is not found.");
-
-        String message = employeeService.updateEmployee(employee);
-
-        EmployeeResponse response = new EmployeeResponse(
-                message + " with id: " + employee.getId() + ".", employee);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Update existing employee",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
+    public EmployeeResponse updateEmployee(
+            @Parameter(in = ParameterIn.DEFAULT, description = "Employee Updation Request", required = true)
+            @RequestBody @Valid EmployeeUpdationRequest request) {
+        EmployeeResponse response = employeeService.updateEmployee(request);
+        return response;
     }
 
-    @DeleteMapping("/employees/{id}")
-    public ResponseEntity<Map<String,Object>> deleteEmployeeById(@PathVariable int id) {
-
-        Employee employee = employeeService.getEmployeeById(id);
-
-        if (employee == null)
-            throw new EmployeeNotFoundException("Employee with id: " + id + " is not found.");
-
-        String message = employeeService.deleteEmployeeById(id);
-
-        EmployeeResponse response = new EmployeeResponse(
-                message + " with id: " + id + ".");
-
-        Map<String,Object> responseMap=new HashMap<>();
-
-        responseMap.put("timeStamp", response.getTimeStamp());
-
-        responseMap.put("message", response.getMessage());
-
-        responseMap.put("status", response.getStatus());
-
-        return new ResponseEntity<>(responseMap, HttpStatus.OK);
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Delete employee by id",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeDeleteResponse.class)))})
+    public EmployeeDeleteResponse deleteEmployeeById(
+            @Parameter(in = ParameterIn.DEFAULT, description = "Employee Id", required = true, example = "123")
+            @NotNull(message = "Employee Id cannot be null") @PathVariable Integer id) {
+        EmployeeDeleteResponse response = employeeService.deleteEmployeeById(id);
+        return response;
     }
 }

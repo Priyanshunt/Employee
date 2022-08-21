@@ -1,35 +1,23 @@
 package com.springboot.demo.employee.model;
 
-import javax.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Entity
-@Table(name = "employee")
-public class Employee {
+@Schema(description = "Employee Updation Request")
+public class EmployeeUpdationRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Schema(description = "Employee Id", minLength = 1, maxLength = 10, type = "Integer", example = "123")
     private Integer id;
-
-    @Column(name = "name")
+    @Schema(description = "Employee Name", minLength = 0, maxLength = 40, type = "String", example = "Abc Def")
     private String name;
-
-    @Column(name = "department")
+    @Schema(description = "Employee Department", minLength = 0, maxLength = 5, type = "String", example = "ABC")
     private String department;
-
-    @Column(name = "machine")
+    @Schema(description = "Employee Machine", minLength = 0, maxLength = 20, type = "String", example = "Windows")
     private String machine;
 
-    public Employee() {
+    public EmployeeUpdationRequest() {
     }
 
-    public Employee(String name, String department, String machine) {
-        this.name = name;
-        this.department = department;
-        this.machine = machine;
-    }
-
-    public Employee(Integer id, String name, String department, String machine) {
+    public EmployeeUpdationRequest(Integer id, String name, String department, String machine) {
         this.id = id;
         this.name = name;
         this.department = department;

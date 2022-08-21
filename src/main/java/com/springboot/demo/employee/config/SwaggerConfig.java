@@ -1,4 +1,4 @@
-package com.springboot.demo.employee.config.swagger;
+package com.springboot.demo.employee.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;

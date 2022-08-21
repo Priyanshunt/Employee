@@ -1,24 +1,17 @@
 package com.springboot.demo.employee.controller;
 
-import com.springboot.demo.employee.model.Employee;
-import com.springboot.demo.employee.model.EmployeeResponse;
+import com.springboot.demo.employee.model.*;
 import com.springboot.demo.employee.service.EmployeeService;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,66 +19,62 @@ import static org.mockito.Mockito.*;
 public class EmployeeControllerTest {
 
     @Mock
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @InjectMocks
-    EmployeeController employeeController;
-
-    List<Employee> employees;
-
-    @Before
-    public void before() {
-        employees = new ArrayList<>();
-        Employee employee = new Employee();
-        employee.setId(123);
-        employees.add(employee);
-        employee = new Employee();
-        employee.setId(456);
-        employees.add(employee);
-    }
+    private EmployeeController employeeController;
 
     @Test
     public void getAllEmployeesTest() {
-        when(employeeService.getAllEmployees()).thenReturn(employees);
-        List<Employee> employeeList = employeeController.getAllEmployees();
+        EmployeeListResponse response = new EmployeeListResponse(200, "message", new ArrayList<>());
+        when(employeeService.getAllEmployees()).thenReturn(response);
+        EmployeeListResponse response1 = employeeController.getAllEmployees();
         verify(employeeService, times(1)).getAllEmployees();
-        assertEquals(123, employeeList.get(0).getId());
-        assertEquals(456, employeeList.get(1).getId());
+        assertEquals(200, response1.getStatusCode());
+        assertEquals("message", response1.getMessage());
     }
 
     @Test
     public void getEmployeeByIdTest() {
-        when(employeeService.getEmployeeById(anyInt())).thenReturn(employees.get(0));
-        ResponseEntity<EmployeeResponse> responseEntity = employeeController.getEmployeeById(123);
-        verify(employeeService, times(1)).getEmployeeById(123);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        EmployeeResponse response = new EmployeeResponse(200, "message", null);
+        Integer id = 123;
+        when(employeeService.getEmployeeById(anyInt())).thenReturn(response);
+        EmployeeResponse response1 = employeeController.getEmployeeById(id);
+        verify(employeeService, times(1)).getEmployeeById(id);
+        assertEquals(200, response1.getStatusCode());
+        assertEquals("message", response1.getMessage());
     }
 
     @Test
     public void addEmployeeTest() {
-        Employee employee1 = new Employee();
-        employee1.setId(789);
-        ResponseEntity<EmployeeResponse> responseEntity = employeeController.addEmployee(employee1);
-        verify(employeeService, times(1)).saveEmployee(employee1);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        EmployeeCreationRequest request = new EmployeeCreationRequest();
+        EmployeeResponse response = new EmployeeResponse(200, "message", null);
+        when(employeeService.addEmployee(any(EmployeeCreationRequest.class))).thenReturn(response);
+        EmployeeResponse response1 = employeeController.addEmployee(request);
+        verify(employeeService, times(1)).addEmployee(request);
+        assertEquals(200, response1.getStatusCode());
+        assertEquals("message", response1.getMessage());
     }
 
     @Test
     public void updateEmployeeTest() {
-        Employee employee1 = new Employee();
-        employee1.setId(456);
-        employee1.setName("name");
-        when(employeeService.getEmployeeById(anyInt())).thenReturn(employees.get(1));
-        ResponseEntity<EmployeeResponse> responseEntity = employeeController.updateEmployee(employee1);
-        verify(employeeService, times(1)).updateEmployee(employee1);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        EmployeeUpdationRequest request = new EmployeeUpdationRequest();
+        EmployeeResponse response = new EmployeeResponse(200, "message", null);
+        when(employeeService.updateEmployee(any(EmployeeUpdationRequest.class))).thenReturn(response);
+        EmployeeResponse response1 = employeeController.updateEmployee(request);
+        verify(employeeService, times(1)).updateEmployee(request);
+        assertEquals(200, response1.getStatusCode());
+        assertEquals("message", response1.getMessage());
     }
 
     @Test
     public void deleteEmployeeByIdTest() {
-        when(employeeService.getEmployeeById(anyInt())).thenReturn(employees.get(1));
-        ResponseEntity<Map<String, Object>> responseEntity = employeeController.deleteEmployeeById(456);
-        verify(employeeService, times(1)).deleteEmployeeById(456);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        EmployeeDeleteResponse response = new EmployeeDeleteResponse(200, "message", null);
+        Integer id = 123;
+        when(employeeService.deleteEmployeeById(anyInt())).thenReturn(response);
+        EmployeeDeleteResponse response1 = employeeController.deleteEmployeeById(id);
+        verify(employeeService, times(1)).deleteEmployeeById(id);
+        assertEquals(200, response1.getStatusCode());
+        assertEquals("message", response1.getMessage());
     }
 }
