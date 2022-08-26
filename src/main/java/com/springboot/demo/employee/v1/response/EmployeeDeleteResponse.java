@@ -1,4 +1,4 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.v1.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -11,8 +11,8 @@ public class EmployeeDeleteResponse extends CommonResponse {
     public EmployeeDeleteResponse() {
     }
 
-    public EmployeeDeleteResponse(Integer statusCode, String message, Integer id) {
-        super(statusCode, message);
+    public EmployeeDeleteResponse(Integer status, String message, Integer id) {
+        super(status, message);
         this.id = id;
     }
 

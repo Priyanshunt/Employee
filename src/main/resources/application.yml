@@ -13,3 +13,7 @@ api:
 springdoc:
   packagesToScan: com.springboot.demo.employee
   pathsToMatch: /**
+  swagger-ui:
+    operationsSorter: alpha
+    tagsSorter: alpha
+    supportedSubmitMethods: ["get", "post", "put", "delete"]

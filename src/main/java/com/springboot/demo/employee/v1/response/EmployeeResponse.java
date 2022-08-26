@@ -1,5 +1,6 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.v1.response;
 
+import com.springboot.demo.employee.repository.model.Employee;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Employee Response")
@@ -11,8 +12,8 @@ public class EmployeeResponse extends CommonResponse {
     public EmployeeResponse() {
     }
 
-    public EmployeeResponse(Integer statusCode, String message, Employee employee) {
-        super(statusCode, message);
+    public EmployeeResponse(Integer status, String message, Employee employee) {
+        super(status, message);
         this.employee = employee;
     }
 

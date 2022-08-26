@@ -1,4 +1,4 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.repository.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ public class EmployeeTest {
         employee.setMachine("machine");
 
         assertNotNull(employee);
-        assertEquals(123, employee.getId().intValue());
+        assertEquals(Integer.valueOf(123), employee.getId());
         assertEquals("name", employee.getName());
         assertEquals("dep", employee.getDepartment());
         assertEquals("machine", employee.getMachine());

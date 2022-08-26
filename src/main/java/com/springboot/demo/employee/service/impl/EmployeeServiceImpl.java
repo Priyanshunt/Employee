@@ -1,8 +1,14 @@
-package com.springboot.demo.employee.service;
+package com.springboot.demo.employee.service.impl;
 
 import com.springboot.demo.employee.exception.EmployeeNotFoundException;
-import com.springboot.demo.employee.model.*;
 import com.springboot.demo.employee.repository.EmployeeRepository;
+import com.springboot.demo.employee.repository.model.Employee;
+import com.springboot.demo.employee.service.EmployeeService;
+import com.springboot.demo.employee.v1.request.EmployeeCreationRequest;
+import com.springboot.demo.employee.v1.request.EmployeeUpdationRequest;
+import com.springboot.demo.employee.v1.response.EmployeeDeleteResponse;
+import com.springboot.demo.employee.v1.response.EmployeeListResponse;
+import com.springboot.demo.employee.v1.response.EmployeeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

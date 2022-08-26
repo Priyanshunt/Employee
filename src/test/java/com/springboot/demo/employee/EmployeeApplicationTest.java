@@ -4,10 +4,10 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmployeeApplicationTests {
+public class EmployeeApplicationTest {
 
 	@Test
-	void contextLoads() {
+	public void test() {
+		EmployeeApplication.main(new String[] {});
 	}
-
 }

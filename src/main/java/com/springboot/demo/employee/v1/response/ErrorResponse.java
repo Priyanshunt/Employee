@@ -1,20 +1,18 @@
-package com.springboot.demo.employee.exception;
+package com.springboot.demo.employee.v1.response;
 
-import com.springboot.demo.employee.model.CommonResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Employee Error Response")
-public class EmployeeErrorResponse extends CommonResponse {
+public class ErrorResponse extends CommonResponse {
 
     private String details;
 
-    public EmployeeErrorResponse() {
+    public ErrorResponse() {
     }
 
-    public EmployeeErrorResponse(Integer statusCode, String details, String message) {
-        super(statusCode, message);
+    public ErrorResponse(Integer status, String message, String details) {
+        super(status, message);
         this.details = details;
-
     }
 
     public String getDetails() {

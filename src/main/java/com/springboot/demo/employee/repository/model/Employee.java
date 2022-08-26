@@ -1,23 +1,32 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.repository.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import javax.persistence.*;
 
-@Schema(description = "Employee Updation Request")
-public class EmployeeUpdationRequest {
+@Entity
+@Table(name = "employee")
+public class Employee {
 
-    @Schema(description = "Employee Id", minLength = 1, maxLength = 10, type = "Integer", example = "123")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Schema(description = "Employee Name", minLength = 0, maxLength = 40, type = "String", example = "Abc Def")
+    @Column(name = "name")
     private String name;
-    @Schema(description = "Employee Department", minLength = 0, maxLength = 5, type = "String", example = "ABC")
+    @Column(name = "department")
     private String department;
-    @Schema(description = "Employee Machine", minLength = 0, maxLength = 20, type = "String", example = "Windows")
+    @Column(name = "machine")
     private String machine;
 
-    public EmployeeUpdationRequest() {
+    public Employee() {
     }
 
-    public EmployeeUpdationRequest(Integer id, String name, String department, String machine) {
+    public Employee(String name, String department, String machine) {
+        this.name = name;
+        this.department = department;
+        this.machine = machine;
+    }
+
+    public Employee(Integer id, String name, String department, String machine) {
         this.id = id;
         this.name = name;
         this.department = department;

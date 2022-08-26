@@ -1,9 +1,9 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.v1.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Employee Creation Request")
-public class EmployeeCreationRequest {
+@Schema(description = "Common Request")
+public class CommonRequest {
 
     @Schema(description = "Employee Name", minLength = 1, maxLength = 40, type = "String", example = "Abc Def")
     private String name;
@@ -12,10 +12,10 @@ public class EmployeeCreationRequest {
     @Schema(description = "Employee Machine", minLength = 1, maxLength = 20, type = "String", example = "Windows")
     private String machine;
 
-    public EmployeeCreationRequest() {
+    public CommonRequest() {
     }
 
-    public EmployeeCreationRequest(String name, String department, String machine) {
+    public CommonRequest(String name, String department, String machine) {
         this.name = name;
         this.department = department;
         this.machine = machine;

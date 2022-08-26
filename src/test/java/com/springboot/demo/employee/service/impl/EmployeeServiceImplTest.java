@@ -1,7 +1,12 @@
-package com.springboot.demo.employee.service;
+package com.springboot.demo.employee.service.impl;
 
-import com.springboot.demo.employee.model.*;
 import com.springboot.demo.employee.repository.EmployeeRepository;
+import com.springboot.demo.employee.repository.model.Employee;
+import com.springboot.demo.employee.v1.request.EmployeeCreationRequest;
+import com.springboot.demo.employee.v1.request.EmployeeUpdationRequest;
+import com.springboot.demo.employee.v1.response.EmployeeDeleteResponse;
+import com.springboot.demo.employee.v1.response.EmployeeListResponse;
+import com.springboot.demo.employee.v1.response.EmployeeResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -41,7 +46,7 @@ public class EmployeeServiceImplTest {
         assertEquals(2, response.getEmployeeList().size());
         assertEquals(123, response.getEmployeeList().get(0).getId());
         assertEquals(456, response.getEmployeeList().get(1).getId());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatus());
         assertEquals("Employee List has been retrieved.", response.getMessage());
     }
 
@@ -52,7 +57,7 @@ public class EmployeeServiceImplTest {
         when(employeeRepository.findById(123)).thenReturn(Optional.of(employee));
         EmployeeResponse response = employeeServiceImpl.getEmployeeById(123);
         assertEquals(123, response.getEmployee().getId());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatus());
         assertEquals("Employee with id: 123 has been found.", response.getMessage());
     }
 
@@ -64,7 +69,7 @@ public class EmployeeServiceImplTest {
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
         EmployeeResponse response = employeeServiceImpl.addEmployee(request);
         assertEquals(123, response.getEmployee().getId());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatus());
         assertEquals("Employee details has been saved with id: 123.", response.getMessage());
     }
 
@@ -78,7 +83,7 @@ public class EmployeeServiceImplTest {
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
         EmployeeResponse response = employeeServiceImpl.updateEmployee(request);
         assertEquals(123, response.getEmployee().getId());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatus());
         assertEquals("Employee details has been updated with id: 123.", response.getMessage());
     }
 
@@ -90,7 +95,7 @@ public class EmployeeServiceImplTest {
         doNothing().when(employeeRepository).deleteById(anyInt());
         EmployeeDeleteResponse response = employeeServiceImpl.deleteEmployeeById(123);
         assertEquals(123, response.getId());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatus());
         assertEquals("Employee details has been updated with id: 123.", response.getMessage());
     }
 }

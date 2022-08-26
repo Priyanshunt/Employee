@@ -1,5 +1,6 @@
-package com.springboot.demo.employee.model;
+package com.springboot.demo.employee.v1.response;
 
+import com.springboot.demo.employee.repository.model.Employee;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class EmployeeListResponse extends CommonResponse {
     public EmployeeListResponse() {
     }
 
-    public EmployeeListResponse(Integer statusCode, String message, List<Employee> employeeList) {
-        super(statusCode, message);
+    public EmployeeListResponse(Integer status, String message, List<Employee> employeeList) {
+        super(status, message);
         this.employeeList = employeeList;
     }
 
