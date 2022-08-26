@@ -3,9 +3,16 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/employeedb?allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=UTC
-    username: root
-    password: admin
+    url: jdbc:h2:mem:employeedb
+#    url: jdbc:mysql://localhost:3306/employeedb?allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: admin
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: true
+    change-log: classpath:sql/changelog.yml
 
 api:
   version: @revision@

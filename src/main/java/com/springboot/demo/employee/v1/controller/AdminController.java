@@ -33,4 +33,14 @@ public class AdminController {
     public ResponseEntity<String> pingCheck() {
         return new ResponseEntity<>("I am Alive.", HttpStatus.OK);
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/h2-console", produces = MediaType.TEXT_HTML_VALUE)
+    @Operation(summary = "Ping Check",
+            responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = String.class)))})
+    @ApiResponse(responseCode = "200", description = "Ok")
+    public String h2Console() {
+        return "redirect:/home.jsp";
+    }
 }

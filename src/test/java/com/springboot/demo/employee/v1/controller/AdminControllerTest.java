@@ -1,11 +1,9 @@
 package com.springboot.demo.employee.v1.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,9 +18,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdminControllerTest {
 
     private MockMvc mockMvc;
-
-    @Spy
-    private ObjectMapper objectMapper;
 
     @InjectMocks
     private AdminController adminController;
@@ -45,6 +40,14 @@ public class AdminControllerTest {
         String response = "I am Alive.";
         ResultActions result = mockMvc.perform(get("/v1/ping").accept(MediaType.TEXT_PLAIN));
         result.andExpectAll(status().isOk(), content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN),
+                content().string(response));
+    }
+
+    @Test
+    public void h2ConsoleTest() throws Exception {
+        String response = "redirect:/home.jsp";
+        ResultActions result = mockMvc.perform(get("/h2-console").accept(MediaType.TEXT_HTML));
+        result.andExpectAll(status().isOk(), content().contentTypeCompatibleWith(MediaType.TEXT_HTML),
                 content().string(response));
     }
 }
