@@ -3,13 +3,15 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:employeedb
-#    url: jdbc:mysql://localhost:3306/employeedb?allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=UTC
-#    username: root
-#    password: admin
-  h2:
-    console:
-      enabled: true
+#    url: jdbc:h2:mem:employeedb
+    url: jdbc:oracle:thin:@localhost:1521:orcl #?allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=UTC
+    username: dbuser
+    password: dbpass
+    proxy-user: root
+
+#  h2:
+#    console:
+#      enabled: true
   liquibase:
     enabled: true
     change-log: classpath:sql/changelog.yml

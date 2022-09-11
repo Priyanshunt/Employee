@@ -42,7 +42,7 @@ public class AdminControllerTest {
         result.andExpectAll(status().isOk(), content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN),
                 content().string(response));
     }
-
+/**
     @Test
     public void h2ConsoleTest() throws Exception {
         String response = "redirect:/home.jsp";
@@ -50,4 +50,5 @@ public class AdminControllerTest {
         result.andExpectAll(status().isOk(), content().contentTypeCompatibleWith(MediaType.TEXT_HTML),
                 content().string(response));
     }
+**/
 }

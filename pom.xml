@@ -19,7 +19,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<revision>2.3.0</revision>
+		<revision>2.4.0</revision>
 	</properties>
 
 	<dependencies>
@@ -87,15 +87,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.10</version>
+			<version>1.6.11</version>
 		</dependency>
 
 		<dependency>

@@ -1,12 +1,12 @@
 package com.springboot.demo.employee.v1.controller;
 
+import com.springboot.demo.employee.service.EmployeeService;
 import com.springboot.demo.employee.v1.request.EmployeeCreationRequest;
 import com.springboot.demo.employee.v1.request.EmployeeUpdationRequest;
 import com.springboot.demo.employee.v1.response.EmployeeDeleteResponse;
-import com.springboot.demo.employee.v1.response.ErrorResponse;
-import com.springboot.demo.employee.service.EmployeeService;
 import com.springboot.demo.employee.v1.response.EmployeeListResponse;
 import com.springboot.demo.employee.v1.response.EmployeeResponse;
+import com.springboot.demo.employee.v1.response.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -16,7 +16,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,6 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get all employees",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeListResponse.class)))})
@@ -58,7 +56,6 @@ public class EmployeeController {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get employee by id",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
@@ -85,7 +82,6 @@ public class EmployeeController {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @PostMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Add new employee",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
@@ -112,7 +108,6 @@ public class EmployeeController {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/employees", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Update existing employee",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeResponse.class)))})
@@ -139,7 +134,6 @@ public class EmployeeController {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Delete employee by id",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = EmployeeDeleteResponse.class)))})
