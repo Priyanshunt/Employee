@@ -2,6 +2,7 @@ package com.springboot.demo.employee.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import oracle.jdbc.OracleConnection;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
@@ -29,10 +31,13 @@ public class DatabaseConfig {
     @Bean
     @Primary
     public DataSource dataSource() throws SQLException {
+        final Properties properties = new Properties();
+        properties.setProperty(OracleConnection.CONNECTION_PROPERTY_PROXY_CLIENT_NAME, proxyUser);
         final OracleDataSource oracleDataSource = new OracleDataSource();
         oracleDataSource.setURL(url);
         oracleDataSource.setUser(username);
         oracleDataSource.setPassword(password);
+        oracleDataSource.setConnectionProperties(properties);
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setConnectionInitSql("ALTER SESSION SET CURRENT_SCHEMA=" + proxyUser);
         hikariConfig.setDataSource(oracleDataSource);

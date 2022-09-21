@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
 #    url: jdbc:h2:mem:employeedb
-    url: jdbc:oracle:thin:@localhost:1521:orcl #?allowPublicKeyRetrieval=true&&useSSL=false&serverTimezone=UTC
-    username: dbuser
-    password: dbpass
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: proxy
+    password: password
     proxy-user: root
 
 #  h2:
