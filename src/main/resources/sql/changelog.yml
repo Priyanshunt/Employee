@@ -6,7 +6,7 @@ databaseChangeLog:
       labels: create-tables
       changes:
         - sqlFile:
-            path: query.sql
+            path: sql/query.sql
             relativeToChangelogFile: true
   - changeSet:
       id: 2
@@ -15,5 +15,5 @@ databaseChangeLog:
       labels: seed-data
       changes:
         - sqlFile:
-            path: query1.sql
+            path: sql/query1.sql
             relativeToChangelogFile: true

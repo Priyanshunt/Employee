@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout>
+                <alwaysWriteExceptions>false</alwaysWriteExceptions>
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [traceId:%X{traceId} , spanId:%X{spanId}] [${spring:spring.application.name}] [%M] [%l] [%-5level] %class{0} - %replace{%msg %xEx}{[\r\n]+C-j}{}%n</pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="LogToFile" fileName="logs/app.log"
+                     filePattern="logs/$${date:dd-MM-yyyy-MM}/app-%d{HH-mm-ss}-%i.log.gz">
+            <PatternLayout>
+                <alwaysWriteExceptions>false</alwaysWriteExceptions>
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [traceId:%X{traceId} , spanId:%X{spanId}] [${spring:spring.application.name}] [%M] [%l] [%-5level] %class{0} - %replace{%msg %xEx}{[\r\n]+C-j}{}%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.springboot.demo.employee" level="info" additivity="false">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="liquibase" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>
