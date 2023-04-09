@@ -1,10 +1,10 @@
-create table employee
+CREATE TABLE EMPLOYEE
 (
-    id integer primary key,
-    name varchar(50) not null,
-    department varchar(50) not null,
-    machine varchar(50) not null
+    ID NUMBER GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
+    NAME VARCHAR(50) NOT NULL,
+    DEPARTMENT VARCHAR(50) NOT NULL,
+    MACHINE VARCHAR(50) NOT NULL
 );
 
-grant on commit refresh on employee to rw_role;
-grant select, insert, update, delete on employee to rw_role;
+GRANT ON COMMIT REFRESH ON EMPLOYEE TO RW_ROLE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON EMPLOYEE TO RW_ROLE;

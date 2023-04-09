@@ -6,18 +6,18 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8080/api/employees",
+			"name": "localhost:8080/v1/employees",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/employees",
+					"raw": "localhost:8080/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -25,18 +25,18 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/api/employees/5",
+			"name": "localhost:8080/v1/employees/5",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/employees/5",
+					"raw": "localhost:8080/v1/employees/5",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
+						"v1",
 						"employees",
 						"5"
 					]
@@ -45,13 +45,13 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/api/employees",
+			"name": "localhost:8080/v1/employees",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 6,\r\n    \"name\": \"Cole\",\r\n    \"department\": \"GTI\",\r\n    \"machine\": \"Windows\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Cole\",\r\n    \"department\": \"GTI\",\r\n    \"machine\": \"Windows\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,13 +59,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/employees",
+					"raw": "localhost:8080/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -73,7 +73,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/api/employees",
+			"name": "localhost:8080/v1/employees",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -87,13 +87,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/employees",
+					"raw": "localhost:8080/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -101,18 +101,18 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/api/employees/6",
+			"name": "localhost:8080/v1/employees/6",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/employees/6",
+					"raw": "localhost:8080/v1/employees/6",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
+						"v1",
 						"employees",
 						"6"
 					]

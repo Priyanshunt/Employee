@@ -6,19 +6,19 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8082/Employee-Account-1.0.0/api/employees",
+			"name": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8082/Employee-Account-1.0.0/api/employees",
+					"raw": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
 						"Employee-Account-1.0.0",
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -26,19 +26,19 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8082/Employee-Account-1.0.0/api/employees/5",
+			"name": "localhost:8082/Employee-Account-1.0.0/v1/employees/5",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8082/Employee-Account-1.0.0/api/employees/5",
+					"raw": "localhost:8082/Employee-Account-1.0.0/v1/employees/5",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
 						"Employee-Account-1.0.0",
-						"api",
+						"v1",
 						"employees",
 						"5"
 					]
@@ -47,7 +47,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8082/Employee-Account-1.0.0/api/employees",
+			"name": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -61,14 +61,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8082/Employee-Account-1.0.0/api/employees",
+					"raw": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
 						"Employee-Account-1.0.0",
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -76,7 +76,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8082/Employee-Account-1.0.0/api/employees",
+			"name": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -90,14 +90,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8082/Employee-Account-1.0.0/api/employees",
+					"raw": "localhost:8082/Employee-Account-1.0.0/v1/employees",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
 						"Employee-Account-1.0.0",
-						"api",
+						"v1",
 						"employees"
 					]
 				}
@@ -105,19 +105,19 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8082/Employee-Account-1.0.0/api/employees/6",
+			"name": "localhost:8082/Employee-Account-1.0.0/v1/employees/6",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8082/Employee-Account-1.0.0/api/employees/6",
+					"raw": "localhost:8082/Employee-Account-1.0.0/v1/employees/6",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
 						"Employee-Account-1.0.0",
-						"api",
+						"v1",
 						"employees",
 						"6"
 					]

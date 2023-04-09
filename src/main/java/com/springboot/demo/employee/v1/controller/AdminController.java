@@ -34,7 +34,7 @@ public class AdminController {
         return "redirect:/swagger-ui.html";
     }
 
-    @Scheduled(initialDelay = 3000, fixedRate = 300000)
+    @Scheduled(fixedRate = 60000)
     @GetMapping(value = "/v1/ping", produces = MediaType.TEXT_PLAIN_VALUE)
     @Operation(summary = "Ping Check",
             responses = {@ApiResponse(content = @Content(schema = @Schema(implementation = String.class)))})

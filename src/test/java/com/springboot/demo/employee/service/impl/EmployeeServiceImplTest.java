@@ -70,7 +70,7 @@ public class EmployeeServiceImplTest {
         EmployeeResponse response = employeeServiceImpl.addEmployee(request);
         assertEquals(123, response.getEmployee().getId());
         assertEquals(200, response.getStatus());
-        assertEquals("Employee details has been saved with id: 123.", response.getMessage());
+        assertEquals("Employee details has been added with id: 123.", response.getMessage());
     }
 
     @Test
@@ -96,6 +96,6 @@ public class EmployeeServiceImplTest {
         EmployeeDeleteResponse response = employeeServiceImpl.deleteEmployeeById(123);
         assertEquals(123, response.getId());
         assertEquals(200, response.getStatus());
-        assertEquals("Employee details has been updated with id: 123.", response.getMessage());
+        assertEquals("Employee details has been deleted with id: 123.", response.getMessage());
     }
 }

@@ -1,35 +1,37 @@
--- Basic setup steps
+-- BASIC SETUP STEPS
 
-conn sys/admin as sysdba;
-alter session set "_oracle_script"=TRUE;
+CONN SYS/admin AS SYSDBA;
+ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
 
-create user root identified by secret;
-grant connect to root;
-grant create session to root;
-grant unlimited tablespace to root;
-grant create role, alter any role, drop any role to root;
-grant create table, select any table, delete any table, alter any table to root;
+CREATE USER ROOT IDENTIFIED BY secret;
+GRANT CONNECT TO ROOT;
+GRANT CREATE SESSION TO ROOT;
+GRANT UNLIMITED TABLESPACE TO ROOT;
+GRANT CREATE ROLE, ALTER ANY ROLE, DROP ANY ROLE TO ROOT;
+GRANT CREATE TABLE, SELECT ANY TABLE, DELETE ANY TABLE, ALTER ANY TABLE TO ROOT;
+GRANT CREATE ANY SEQUENCE, ALTER ANY SEQUENCE, DROP ANY SEQUENCE TO ROOT;
+GRANT CREATE ANY TRIGGER, ALTER ANY TRIGGER, DROP ANY TRIGGER TO ROOT;
 
-create user proxy identified by password;
-grant connect to proxy;
-grant create session to proxy;
-alter user root grant connect through proxy;
+CREATE USER PROXY IDENTIFIED BY password;
+GRANT CONNECT TO PROXY;
+GRANT CREATE SESSION TO PROXY;
+ALTER USER ROOT GRANT CONNECT THROUGH PROXY;
 
-conn root/secret
-alter session set "_oracle_script"=TRUE;
-create role rw_role;
-grant rw_role to proxy;
+CONN ROOT/secret
+ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
+CREATE ROLE RW_ROLE;
+GRANT RW_ROLE TO PROXY;
 
---To cleanup everything
+--TO CLEANUP EVERYTHING
 
-conn root/secret
-alter session set "_oracle_script"=TRUE;
-drop role rw_role;
+CONN ROOT/secret
+ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
+DROP ROLE RW_ROLE;
 
-conn sys/admin as sysdba;
-alter session set "_oracle_script"=TRUE;
+CONN SYS/admin AS SYSDBA;
+ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
 
-revoke all privileges from proxy;
-revoke all privileges from root;
-drop user proxy cascade;
-drop user root cascade;
+REVOKE ALL PRIVILEGES FROM PROXY;
+REVOKE ALL PRIVILEGES FROM ROOT;
+DROP USER PROXY CASCADE;
+DROP USER ROOT CASCADE;

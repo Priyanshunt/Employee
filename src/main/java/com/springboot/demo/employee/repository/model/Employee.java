@@ -8,26 +8,19 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
-    @Column(name = "department")
+    @Column(name = "department", length = 50)
     private String department;
-    @Column(name = "machine")
+    @Column(name = "machine", length = 50)
     private String machine;
 
     public Employee() {
     }
 
     public Employee(String name, String department, String machine) {
-        this.name = name;
-        this.department = department;
-        this.machine = machine;
-    }
-
-    public Employee(Integer id, String name, String department, String machine) {
-        this.id = id;
         this.name = name;
         this.department = department;
         this.machine = machine;

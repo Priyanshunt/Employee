@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -45,10 +44,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponse addEmployee(EmployeeCreationRequest request) {
         Employee employee = this.generateEmployee(request);
-        employee.setId(0);
         employee = employeeRepository.save(employee);
         EmployeeResponse response = new EmployeeResponse(successStatus(),
-                "Employee details has been saved with id: " + employee.getId() + ".", employee);
+                "Employee details has been added with id: " + employee.getId() + ".", employee);
         return response;
     }
 
@@ -58,15 +56,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeObject.isEmpty())
             throw new EmployeeNotFoundException(request.getId());
         Employee employee = employeeObject.get();
-        Employee updatedEmployee = this.generateEmployee(request);
-        if (Objects.nonNull(updatedEmployee.getName()) && !"".equalsIgnoreCase(updatedEmployee.getName())) {
-            updatedEmployee.setName(employee.getName());
+        if (null != request.getName() && !"".equalsIgnoreCase(request.getDepartment())) {
+            employee.setName(request.getName());
         }
-        if (Objects.nonNull(updatedEmployee.getDepartment()) && !"".equalsIgnoreCase(updatedEmployee.getDepartment())) {
-            updatedEmployee.setDepartment(employee.getDepartment());
+        if (null != request.getDepartment() && !"".equalsIgnoreCase(request.getDepartment())) {
+            employee.setDepartment(request.getDepartment());
         }
-        if (Objects.nonNull(updatedEmployee.getMachine()) && !"".equalsIgnoreCase(updatedEmployee.getMachine())) {
-            updatedEmployee.setMachine(employee.getMachine());
+        if (null != request.getMachine() && !"".equalsIgnoreCase(request.getMachine())) {
+            employee.setMachine(request.getMachine());
         }
         employee = employeeRepository.save(employee);
         EmployeeResponse response = new EmployeeResponse(successStatus(),
@@ -81,16 +78,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException(id);
         employeeRepository.deleteById(id);
         EmployeeDeleteResponse response = new EmployeeDeleteResponse(successStatus(),
-                "Employee details has been updated with id: " + id + ".", id);
+                "Employee details has been deleted with id: " + id + ".", id);
         return response;
     }
 
     private Employee generateEmployee(EmployeeCreationRequest request) {
         return new Employee(request.getName(), request.getDepartment(), request.getMachine());
-    }
-
-    private Employee generateEmployee(EmployeeUpdationRequest request) {
-        return new Employee(request.getId(), request.getName(), request.getDepartment(), request.getMachine());
     }
 
     private Integer successStatus() {
