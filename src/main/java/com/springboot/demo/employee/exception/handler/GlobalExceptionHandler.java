@@ -33,77 +33,66 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return this.build(response, httpStatus);
     }
 
-    @Override
     public ResponseEntity<Object> handleBindException(org.springframework.validation.BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Bind Exception", "Address already in use.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleConversionNotSupported(ConversionNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Conversion Not Supported Exception", "Unable to perform type conversion of field value(s).");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Http Media Type Not Acceptable Exception", "Invalid Accept header.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Http Media Type Not Supported Exception", "Invalid Content-Type header.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Http Message Not Readable Exception", "Invalid field(s) in JSON request.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleHttpMessageNotWritable(HttpMessageNotWritableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Http Message Not Writable Exception", "Invalid field(s) in JSON response payload.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Http Request Method Not Supported Exception", "Invalid HTTP request method type.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Method Argument Not Valid Exception", "Invalid argument(s) in HTTP request uri.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Missing Servlet Request Parameter Exception", "Missing argument(s) in HTTP request uri.");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Type Mismatch Exception", "Invalid type of field value(s).");
         return this.build(response, status);
     }
 
-    @Override
     public ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorResponse response = new ErrorResponse(
                 status.value(), "Unknown Exception", "Unable to provide resolution to this error.");

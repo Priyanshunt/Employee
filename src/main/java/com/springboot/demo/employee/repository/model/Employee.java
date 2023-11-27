@@ -1,6 +1,6 @@
 package com.springboot.demo.employee.repository.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "employee", schema = "root")

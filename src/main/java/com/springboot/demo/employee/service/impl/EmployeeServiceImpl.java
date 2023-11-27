@@ -9,7 +9,10 @@ import com.springboot.demo.employee.v1.request.EmployeeUpdationRequest;
 import com.springboot.demo.employee.v1.response.EmployeeDeleteResponse;
 import com.springboot.demo.employee.v1.response.EmployeeListResponse;
 import com.springboot.demo.employee.v1.response.EmployeeResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +22,13 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
+    @Cacheable(value = "generic")
     public EmployeeListResponse getAllEmployees() {
         List<Employee> employeeList = (List<Employee>) employeeRepository.findAll();
         EmployeeListResponse response = new EmployeeListResponse(successStatus(),
